@@ -24,9 +24,9 @@ const Footer = () => {
 
     return (
         <footer className="footer">
-            {/* ── MAIN FOOTER ── */}
+            
             <div className="footer-main">
-                {/* Brand column */}
+                
                 <div className="footer-col footer-brand">
                     <Link to="/" className="footer-logo">
                         <GiLotus className="footer-logo-icon" />
@@ -38,18 +38,18 @@ const Footer = () => {
                         tradition to your doorstep with love and authenticity.
                     </p>
                     <div className="footer-socials">
-                        <a href="#" className="social-link" aria-label="Instagram" title="Instagram">
+                        
                             <FaInstagram />
-                        </a>
-                        <a href="#" className="social-link" aria-label="Facebook" title="Facebook">
+                        
+                        
                             <FaFacebookF />
-                        </a>
-                        <a href="#" className="social-link" aria-label="Pinterest" title="Pinterest">
+                        
+                        
                             <FaPinterestP />
-                        </a>
-                        <a href="#" className="social-link" aria-label="YouTube" title="YouTube">
+                        
+                        
                             <FaYoutube />
-                        </a>
+                       
                     </div>
                 </div>
 
