@@ -73,10 +73,10 @@ const Footer = () => {
                         <li><Link to="/orders">My Orders</Link></li>
                         <li><Link to="/wishlist">My Wishlist</Link></li>
                         <li><Link to="/cart">Shopping Cart</Link></li>
-                        <li><a href="#">Returns & Refunds</a></li>
-                        <li><a href="#">Shipping Policy</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li>Returns & Refunds</li>
+                        <li>Shipping Policy</li>
+                        <li>Terms & Conditions</li>
+                        <li>Privacy Policy</li>
                     </ul>
                 </div>
 
