@@ -1,0 +1,309 @@
+/* ═══════════════════════════════════════════════
+   FOOTER — Saree Elegance
+   ═══════════════════════════════════════════════ */
+
+.footer {
+    background: #2a1740;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 0;
+}
+
+/* ── MAIN GRID ── */
+.footer-main {
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr 0.8fr 1.2fr;
+    gap: 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 60px 32px 48px;
+}
+
+/* ── BRAND COLUMN ── */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    margin-bottom: 16px;
+}
+
+.footer-logo-icon {
+    font-size: 1.8rem;
+    color: #d4af37;
+    filter: drop-shadow(0 1px 2px rgba(212, 175, 55, 0.3));
+}
+
+.footer-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.footer-desc {
+    font-size: 0.84rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 24px;
+    max-width: 320px;
+}
+
+/* Socials */
+.footer-socials {
+    display: flex;
+    gap: 10px;
+}
+
+.social-link {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: #d4af37;
+    border-color: #d4af37;
+    color: #2a1740;
+    transform: translateY(-2px);
+}
+
+/* ── COLUMN HEADINGS ── */
+.footer-heading {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0 0 20px;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.footer-heading::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: #d4af37;
+    border-radius: 1px;
+}
+
+/* ── LINKS LIST ── */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.84rem;
+    transition: color 0.25s ease, padding-left 0.25s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: #d4af37;
+    padding-left: 4px;
+}
+
+/* ── CONTACT LIST ── */
+.footer-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.contact-icon {
+    font-size: 1.1rem;
+    color: #d4af37;
+    flex-shrink: 0;
+}
+
+/* ── NEWSLETTER ── */
+.newsletter-heading {
+    margin-top: 8px;
+}
+
+.footer-newsletter {
+    display: flex;
+    border-radius: 50px;
+    overflow: hidden;
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    transition: border-color 0.3s ease;
+}
+
+.footer-newsletter:focus-within {
+    border-color: #d4af37;
+}
+
+.footer-newsletter input {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    font-size: 0.82rem;
+    outline: none;
+}
+
+.footer-newsletter input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.footer-newsletter button {
+    background: #d4af37;
+    border: none;
+    color: #2a1740;
+    padding: 10px 18px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.footer-newsletter button:hover {
+    background: #e6c54b;
+}
+
+.footer-newsletter-note {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 8px 0 0;
+}
+
+.footer-subscribed {
+    font-size: 0.85rem;
+    color: #6fcf97;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ── BOTTOM BAR ── */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.footer-bottom-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 18px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.footer-copyright {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+}
+
+.footer-payments {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.payment-label {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.payment-icons {
+    display: flex;
+    gap: 6px;
+}
+
+.payment-chip {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 48px 24px 36px;
+    }
+
+    .footer-desc {
+        max-width: 100%;
+    }
+
+    .footer-bottom-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        padding: 16px 24px;
+    }
+
+    .footer-payments {
+        flex-direction: column;
+        gap: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-main {
+        padding: 36px 16px 28px;
+    }
+
+    .footer-title {
+        font-size: 1.15rem;
+    }
+
+    .footer-socials {
+        gap: 8px;
+    }
+
+    .social-link {
+        width: 34px;
+        height: 34px;
+        font-size: 0.85rem;
+    }
+}

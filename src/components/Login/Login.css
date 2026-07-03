@@ -1,0 +1,36 @@
+
+.auth-extras {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: -4px 0 4px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #7a6a5e;
+  cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  accent-color: #43205f;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.forgot-link {
+  font-size: 0.82rem;
+  color: #b5446e;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.forgot-link:hover {
+  color: #43205f;
+}
