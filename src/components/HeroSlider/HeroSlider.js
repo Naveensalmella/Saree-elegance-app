@@ -1,99 +1,93 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import "./HeroSlider.css";
-import bannerData from "../../data/bannerData";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
+const slides = [
+    {
+        subtitle: "New Collection",
+        title: "Elegance in Every Thread",
+        description:
+            "Handcrafted sarees and lehengas that celebrate tradition with a modern touch.",
+        cta: "Shop Now",
+        link: "/products",
+        image:
+            "https://images.unsplash.com/photo-1614886137926-0e6a4f2dfc22?w=1400&q=80",
+        align: "left",
+    },
+    {
+        subtitle: "Festive Edit",
+        title: "Lehengas That Steal the Show",
+        description:
+            "From sangeet nights to wedding days — find your perfect silhouette.",
+        cta: "Explore",
+        link: "/products",
+        image:
+            "https://images.unsplash.com/photo-1604502071830-b5e8dce44f83?w=1400&q=80",
+        align: "right",
+    },
+    {
+        subtitle: "Everyday Ethnic",
+        title: "Kurtis You'll Live In",
+        description:
+            "Effortless style for work, weekends, and everything in between.",
+        cta: "View All",
+        link: "/products",
+        image:
+            "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=1400&q=80",
+        align: "left",
+    },
+];
 
 const HeroSlider = () => {
-
     const [current, setCurrent] = useState(0);
-    const [pause, setPause] = useState(false);
+    const timerRef = useRef(null);
+
+    const resetTimer = () => {
+        clearInterval(timerRef.current);
+        timerRef.current = setInterval(
+            () => setCurrent((p) => (p + 1) % slides.length),
+            5000
+        );
+    };
 
     useEffect(() => {
+        resetTimer();
+        return () => clearInterval(timerRef.current);
+        // eslint-disable-next-line
+    }, []);
 
-        if (pause) return;
-
-        const interval = setInterval(() => {
-
-            setCurrent((prev) =>
-                prev === bannerData.length - 1 ? 0 : prev + 1
-            );
-
-        }, 4000);
-
-        return () => clearInterval(interval);
-
-    }, [pause]);
-
-    const nextSlide = () => {
-        setCurrent((prev) =>
-            prev === bannerData.length - 1 ? 0 : prev + 1
-        );
+    const goTo = (i) => {
+        setCurrent(i);
+        resetTimer();
     };
 
-    const previousSlide = () => {
-        setCurrent((prev) =>
-            prev === 0 ? bannerData.length - 1 : prev - 1
-        );
-    };
+    const slide = slides[current];
 
     return (
-
         <section
             className="hero-slider"
-            onMouseEnter={() => setPause(true)}
-            onMouseLeave={() => setPause(false)}
+            style={{ backgroundImage: `url(${slide.image})` }}
         >
-
-            <img
-                src={bannerData[current].image}
-                alt={bannerData[current].title}
-                className="hero-image"
-            />
-
-            <div className="overlay">
-
-                <h1>{bannerData[current].title}</h1>
-
-                <p>{bannerData[current].subtitle}</p>
-
-                
-
+            <div className="hero-slider-overlay" />
+            <div className={`hero-slider-content hero-slider-${slide.align}`} key={current}>
+                <span className="hero-slider-subtitle">{slide.subtitle}</span>
+                <h1 className="hero-slider-title">{slide.title}</h1>
+                <p className="hero-slider-desc">{slide.description}</p>
+                <Link to={slide.link} className="hero-slider-cta">
+                    {slide.cta} →
+                </Link>
             </div>
-
-            <button
-                className="left-arrow"
-                onClick={previousSlide}
-            >
-                <FaChevronLeft />
-            </button>
-
-            <button
-                className="right-arrow"
-                onClick={nextSlide}
-            >
-                <FaChevronRight />
-            </button>
-
-            <div className="dots">
-
-                {bannerData.map((_, index) => (
-
-                    <span
-                        key={index}
-                        className={
-                            current === index
-                                ? "dot active-dot"
-                                : "dot"
-                        }
-                        onClick={() => setCurrent(index)}
-                    ></span>
-
+            <div className="hero-slider-dots">
+                {slides.map((_, i) => (
+                    <button
+                        key={i}
+                        className={`hero-dot ${i === current ? "active" : ""}`}
+                        onClick={() => goTo(i)}
+                        aria-label={`Slide ${i + 1}`}
+                    />
                 ))}
-
             </div>
-
         </section>
-
     );
 };
 
