@@ -54,7 +54,7 @@ const Orders = () => {
             <h1 className="orders-title">My Orders</h1>
 
             <div className="orders-list">
-                {orders.map((order) => {
+                {orders.map((order, orderIdx) => {
                     const isExpanded = expandedId === order.id;
                     return (
                         <div className={`order-card ${justPlaced === order.id ? "order-highlight" : ""}`} key={order.id}>
@@ -73,14 +73,14 @@ const Orders = () => {
                                 </div>
                             </div>
 
-
+                            
                             {isExpanded && (
                                 <div className="order-details">
                                     <div className="order-items-section">
                                         <h4>Items ({order.items.length})</h4>
-                                        {order.items.map((item) => (
+                                        {order.items.map((item, itemIdx) => (
                                             <div className="order-item" key={item.id}>
-                                                <FallbackImage src={item.image} alt={item.title} />
+                                                <FallbackImage src={item.image} alt={item.title} index={orderIdx * 7 + itemIdx} />
                                                 <div className="order-item-info">
                                                     <Link to={`/products/${item.id}`} className="order-item-title">{item.title}</Link>
                                                     <span className="order-item-qty">Qty: {item.quantity}</span>

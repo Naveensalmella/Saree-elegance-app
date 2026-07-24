@@ -126,9 +126,9 @@ const Checkout = () => {
         <div className="co-summary">
           <h2>Order Summary</h2>
           <div className="co-summary-items">
-            {cart.map((item) => (
+            {cart.map((item, i) => (
               <div className="co-summary-item" key={item.id}>
-                <FallbackImage src={item.image} alt={item.title} />
+                <FallbackImage src={item.image} alt={item.title} index={i} />
                 <div className="co-summary-item-info">
                   <span className="co-si-title">{item.title}</span>
                   <span className="co-si-qty">Qty: {item.quantity}</span>

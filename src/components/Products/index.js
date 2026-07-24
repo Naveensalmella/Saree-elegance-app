@@ -288,6 +288,7 @@ const Products = () => {
                       <FallbackImage
                         src={item.image}
                         alt={item.title}
+                        index={index}
                         className="p-card-img"
                         loading="lazy"
                       />

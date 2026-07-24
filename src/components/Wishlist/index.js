@@ -59,11 +59,11 @@ const Wishlist = () => {
             </div>
 
             <div className="wish-grid">
-                {wishlist.map((item) => (
+                {wishlist.map((item, i) => (
                     <div className={`wish-card ${movedIds[item.id] ? "wish-moved" : ""}`} key={item.id}>
                         <div className="wish-card-img-wrap">
                             <Link to={`/products/${item.id}`}>
-                                <FallbackImage src={item.image} alt={item.title} />
+                                <FallbackImage src={item.image} alt={item.title} index={i} />
                             </Link>
                             <button className="wish-remove-btn" onClick={() => removeFromWishlist(item.id)} title="Remove">
                                 <FaHeart />

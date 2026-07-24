@@ -80,7 +80,7 @@ const testimonials = [
    ────────────────────────────────────────────── */
 
 /* Product Card */
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, index }) => {
   const [hovered, setHovered] = useState(false);
   const name = product.title || product.name || "Product";
   const price = product.price || 0;
@@ -95,7 +95,7 @@ const ProductCard = ({ product }) => {
       onMouseLeave={() => setHovered(false)}
     >
       <div className="product-img-wrap">
-        <FallbackImage src={image} alt={name} loading="lazy" />
+        <FallbackImage src={image} alt={name} index={index} loading="lazy" />
         <div className={`product-actions ${hovered ? "visible" : ""}`}>
           <button className="action-btn" title="Add to wishlist">♡</button>
           <button className="action-btn" title="Quick view">⤢</button>
@@ -181,7 +181,7 @@ const Home = () => {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
-
+  
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -207,22 +207,22 @@ const Home = () => {
     }
   };
 
-
+ 
   const trending = products.slice(0, 8);
   const newArrivals = products.slice(8, 12);
 
   return (
     <main className="home">
 
-
+      
       <HeroSlider />
 
-
+      
       <div className="miniBanner1-img">
         <FallbackImage src="/miniBanner1.jpg" alt="Festive collection banner" />
       </div>
 
-
+      
       <section className="features-bar">
         {features.map((f, i) => (
           <div className="feature-item" key={i}>
@@ -235,16 +235,16 @@ const Home = () => {
         ))}
       </section>
 
-
+      
       <section className="section categories-section">
         <div className="section-header">
           <h2>Shop by Category</h2>
           <p className="section-sub">From timeless classics to contemporary fusion</p>
         </div>
         <div className="categories-grid">
-          {categories.map((cat) => (
+          {categories.map((cat, i) => (
             <Link to={cat.link} className="category-card" key={cat.name}>
-              <FallbackImage src={cat.image} alt={cat.name} loading="lazy" />
+              <FallbackImage src={cat.image} alt={cat.name} index={i} loading="lazy" />
               <div className="category-overlay">
                 <span className="category-name">{cat.name}</span>
                 <span className="category-desc">{cat.desc}</span>
@@ -255,7 +255,7 @@ const Home = () => {
         </div>
       </section>
 
-
+      
       <section className="section">
         <div className="section-header">
           <h2>Trending Now</h2>
@@ -267,11 +267,11 @@ const Home = () => {
         <div className="products-grid">
           {loading
             ? Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)
-            : trending.map((p) => <ProductCard product={p} key={p.id} />)}
+            : trending.map((p, i) => <ProductCard product={p} index={i} key={p.id} />)}
         </div>
       </section>
 
-
+      
       <section className="deal-banner">
         <div className="deal-content">
           <span className="deal-tag">Limited Time Offer</span>
@@ -284,7 +284,7 @@ const Home = () => {
         </div>
       </section>
 
-
+      
       {newArrivals.length > 0 && (
         <section className="section">
           <div className="section-header">
@@ -292,14 +292,14 @@ const Home = () => {
             <Link to="/products" className="view-all">View All →</Link>
           </div>
           <div className="products-grid four-col">
-            {newArrivals.map((p) => (
-              <ProductCard product={p} key={p.id} />
+            {newArrivals.map((p, i) => (
+              <ProductCard product={p} index={i} key={p.id} />
             ))}
           </div>
         </section>
       )}
 
-
+      
       <section className="promo-split">
         <div className="promo-card">
           <FallbackImage
@@ -333,7 +333,7 @@ const Home = () => {
         </div>
       </section>
 
-
+      
       <section className="section testimonials-section">
         <div className="section-header">
           <h2>What Our Customers Say</h2>
@@ -349,7 +349,7 @@ const Home = () => {
         </div>
       </section>
 
-
+      
       <section className="newsletter">
         <div className="newsletter-inner">
           <h2>Stay in the Loop</h2>
@@ -374,7 +374,7 @@ const Home = () => {
         </div>
       </section>
 
-
+     
       <section className="section insta-section">
         <div className="section-header">
           <h2>#StyledByYou</h2>
@@ -393,6 +393,7 @@ const Home = () => {
               <FallbackImage
                 src={`https://images.unsplash.com/${id}?w=400&q=80`}
                 alt="Community style"
+                index={i}
                 loading="lazy"
               />
             </div>

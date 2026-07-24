@@ -58,12 +58,12 @@ const Cart = () => {
             </div>
 
             <div className="cart-layout">
-
+                
                 <div className="cart-items">
-                    {cartItems.map((item) => (
+                    {cartItems.map((item, i) => (
                         <div className="cart-item" key={item.id}>
                             <Link to={`/products/${item.id}`} className="cart-item-img-wrap">
-                                <FallbackImage src={item.image} alt={item.title} />
+                                <FallbackImage src={item.image} alt={item.title} index={i} />
                             </Link>
                             <div className="cart-item-details">
                                 <Link to={`/products/${item.id}`} className="cart-item-title">
@@ -89,7 +89,7 @@ const Cart = () => {
                     <button className="cart-clear-btn" onClick={clearCart}>Clear Cart</button>
                 </div>
 
-
+                
                 <div className="cart-summary">
                     <h3>Order Summary</h3>
                     <div className="cart-summary-row">
