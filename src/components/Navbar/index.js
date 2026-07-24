@@ -24,19 +24,19 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  
+
   useEffect(() => {
     setMenuOpen(false);
   }, [location]);
 
-  
+
   useEffect(() => {
     const syncCounts = () => {
       const cart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -49,10 +49,10 @@ const Navbar = () => {
 
     syncCounts();
 
-    
+
     window.addEventListener("storage", syncCounts);
 
-    
+
     window.addEventListener("cartUpdated", syncCounts);
     window.addEventListener("wishlistUpdated", syncCounts);
 
@@ -67,7 +67,7 @@ const Navbar = () => {
     };
   }, [location]);
 
-  
+
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
@@ -76,24 +76,26 @@ const Navbar = () => {
     }
   };
 
-  
+
   const handleLogout = () => {
     localStorage.removeItem("user");
     setUser(null);
     navigate("/login");
   };
 
-  const navLinks = [
-    { to: "/", label: "Home" },
-    { to: "/products", label: "Products" },
-    { to: "/cart", label: "Cart" },
-    { to: "/orders", label: "Orders" },
-    { to: "/wishlist", label: "Wishlist" },
-  ];
+  const navLinks = user
+    ? [
+      { to: "/", label: "Home" },
+      { to: "/products", label: "Products" },
+      { to: "/cart", label: "Cart" },
+      { to: "/orders", label: "Orders" },
+      { to: "/wishlist", label: "Wishlist" },
+    ]
+    : [{ to: "/", label: "Home" }];
 
   return (
     <>
-      
+
       <div className="navbar-top">
         {/* Announcement bar */}
         <div className="announcement-bar">
@@ -103,7 +105,7 @@ const Navbar = () => {
           </p>
         </div>
 
-        
+
         <nav className="up-nav-container">
           <Link to="/" className="brand">
             <GiLotus className="title-icon" />
@@ -131,22 +133,26 @@ const Navbar = () => {
           </form>
 
           <div className="nav-right">
-            <Link to="/wishlist" className="icon-link" title="Wishlist">
-              <FaRegHeart />
-              {wishCount > 0 && <span className="icon-badge">{wishCount}</span>}
-              <span className="icon-label">Wishlist</span>
-            </Link>
-            <Link to="/cart" className="icon-link" title="Cart">
-              <BsCartCheck />
-              {cartCount > 0 && <span className="icon-badge">{cartCount}</span>}
-              <span className="icon-label">Cart</span>
-            </Link>
+            {user && (
+              <>
+                <Link to="/wishlist" className="icon-link" title="Wishlist">
+                  <FaRegHeart />
+                  {wishCount > 0 && <span className="icon-badge">{wishCount}</span>}
+                  <span className="icon-label">Wishlist</span>
+                </Link>
+                <Link to="/cart" className="icon-link" title="Cart">
+                  <BsCartCheck />
+                  {cartCount > 0 && <span className="icon-badge">{cartCount}</span>}
+                  <span className="icon-label">Cart</span>
+                </Link>
+              </>
+            )}
 
             {user ? (
-              <button className="icon-link user-btn" onClick={handleLogout} title="Logout">
+              <Link to="/profile" className="icon-link user-btn" title="My Profile">
                 <IoPersonCircleOutline />
                 <span className="icon-label">{user.username || "Account"}</span>
-              </button>
+              </Link>
             ) : (
               <Link to="/login" className="icon-link" title="Account">
                 <IoPersonCircleOutline />
@@ -173,7 +179,7 @@ const Navbar = () => {
         </nav>
       </div>
 
-      
+
       <nav className={`nav-container ${menuOpen ? "open" : ""} ${scrolled ? "nav-scrolled" : ""}`}>
         <div className="nav-links">
           {navLinks.map((link) => (
@@ -195,14 +201,14 @@ const Navbar = () => {
             </button>
           ) : (
             <>
-              <Link to="/register" className="nav-element">Register</Link>
+              <Link to="/register" className="nav-element">Sign Up</Link>
               <Link to="/login" className="nav-auth-btn">Login</Link>
             </>
           )}
         </div>
       </nav>
 
-      
+
       {menuOpen && (
         <div className="nav-overlay" onClick={() => setMenuOpen(false)} />
       )}

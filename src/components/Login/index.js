@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { GiLotus } from "react-icons/gi";
@@ -15,6 +15,8 @@ const SUPABASE_HEADERS = {
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndxamF4dGR4emptbHNhZW94eWhxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzNDE4MTcsImV4cCI6MjA5NjkxNzgxN30.Np2wvORlImgoan2P7DPeJK8SN8P305vl9ISsUTSMWYA",
 };
 
+const getUser = () => JSON.parse(localStorage.getItem("user") || "null");
+
 const Login = () => {
     const navigate = useNavigate();
 
@@ -23,6 +25,12 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+
+    // Already logged in? Skip the form entirely.
+    useEffect(() => {
+        if (getUser()) navigate("/products", { replace: true });
+        // eslint-disable-next-line
+    }, []);
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -43,10 +51,11 @@ const Login = () => {
                         id: user.id,
                         username: user.username,
                         email: user.email,
+                        phone: user.phone,
                     })
                 );
                 alert("Login successful!");
-                navigate("/");
+                navigate("/products");
             } else {
                 setError("Invalid email or password. Please try again.");
             }
@@ -60,7 +69,7 @@ const Login = () => {
 
     return (
         <div className="auth-page">
-            
+
             <div className="auth-left">
                 <div className="auth-form-wrapper">
                     {/* Brand */}
@@ -140,7 +149,7 @@ const Login = () => {
                 </div>
             </div>
 
-            
+
             <div
                 className="auth-right"
                 style={{

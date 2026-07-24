@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Wishlist.css";
 import { FaHeart } from "react-icons/fa";
 import { BsCartPlus, BsHeartbreak } from "react-icons/bs";
+import FallbackImage from "../common/FallbackImage";
 
 const getWishlist = () => JSON.parse(localStorage.getItem("wishlist") || "[]");
 const saveWishlist = (list) => localStorage.setItem("wishlist", JSON.stringify(list));
@@ -62,7 +63,7 @@ const Wishlist = () => {
                     <div className={`wish-card ${movedIds[item.id] ? "wish-moved" : ""}`} key={item.id}>
                         <div className="wish-card-img-wrap">
                             <Link to={`/products/${item.id}`}>
-                                <img src={item.image} alt={item.title} />
+                                <FallbackImage src={item.image} alt={item.title} />
                             </Link>
                             <button className="wish-remove-btn" onClick={() => removeFromWishlist(item.id)} title="Remove">
                                 <FaHeart />

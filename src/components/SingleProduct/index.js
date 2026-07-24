@@ -5,6 +5,7 @@ import "./SingleProduct.css";
 import { FaRegHeart, FaHeart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { BsCartPlus, BsCheckCircleFill, BsTruck, BsArrowReturnLeft, BsShieldCheck } from "react-icons/bs";
 import { HiOutlineChevronLeft } from "react-icons/hi";
+import FallbackImage from "../common/FallbackImage";
 
 
 const SUPABASE_URL =
@@ -67,7 +68,7 @@ const SingleProduct = () => {
           setWishlisted(wl.some((w) => w.id === res.data[0].id));
         }
 
-        
+
         const allRes = await axios.get(SUPABASE_URL, {
           headers: SUPABASE_HEADERS,
         });
@@ -85,7 +86,7 @@ const SingleProduct = () => {
     window.scrollTo(0, 0);
   }, [id]);
 
- 
+
   const toggleWishlist = () => {
     const wl = getWishlist();
     let updated;
@@ -99,7 +100,7 @@ const SingleProduct = () => {
     setWishlisted(!wishlisted);
   };
 
- 
+
   const handleAddToCart = () => {
     const cart = getCart();
     const existing = cart.find((c) => c.id === product.id);
@@ -119,7 +120,7 @@ const SingleProduct = () => {
     setTimeout(() => setAddedToCart(false), 2000);
   };
 
-  
+
   const handleBuyNow = () => {
     handleAddToCart();
     navigate("/cart");
@@ -156,9 +157,9 @@ const SingleProduct = () => {
         <span className="sp-crumb-current">{product.title}</span>
       </div>
 
-      
+
       <div className="sp-main">
-       
+
         <div className="sp-image-section">
           <button className="sp-back-btn" onClick={() => navigate(-1)}>
             <HiOutlineChevronLeft /> Back
@@ -168,11 +169,11 @@ const SingleProduct = () => {
             onClick={() => setImgZoomed((z) => !z)}
             title="Click to zoom"
           >
-            <img src={product.image} alt={product.title} />
+            <FallbackImage src={product.image} alt={product.title} />
           </div>
         </div>
 
-        
+
         <div className="sp-details">
           <h1 className="sp-title">{product.title}</h1>
 
@@ -187,7 +188,7 @@ const SingleProduct = () => {
 
           <p className="sp-description">{product.description}</p>
 
-          
+
           <div className="sp-stock-info">
             {product.stock > 0 ? (
               <span className="sp-instock">
@@ -198,7 +199,7 @@ const SingleProduct = () => {
             )}
           </div>
 
-         
+
           {product.stock > 0 && (
             <div className="sp-quantity-row">
               <label>Quantity:</label>
@@ -222,7 +223,7 @@ const SingleProduct = () => {
             </div>
           )}
 
-          
+
           <div className="sp-actions">
             <button
               className={`sp-add-cart ${addedToCart ? "added" : ""}`}
@@ -254,7 +255,7 @@ const SingleProduct = () => {
             </button>
           </div>
 
-          
+
           <div className="sp-trust-badges">
             <div className="sp-trust-item">
               <BsTruck className="sp-trust-icon" />
@@ -281,7 +282,7 @@ const SingleProduct = () => {
         </div>
       </div>
 
-      
+
       {relatedProducts.length > 0 && (
         <div className="sp-related">
           <h2>You May Also Like</h2>
@@ -293,7 +294,7 @@ const SingleProduct = () => {
                 key={item.id}
               >
                 <div className="sp-related-img-wrap">
-                  <img src={item.image} alt={item.title} loading="lazy" />
+                  <FallbackImage src={item.image} alt={item.title} loading="lazy" />
                 </div>
                 <div className="sp-related-info">
                   <h4>{item.title}</h4>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Checkout.css";
 import { BsShieldCheck } from "react-icons/bs";
+import FallbackImage from "../common/FallbackImage";
 
 const getCart = () => JSON.parse(localStorage.getItem("cart") || "[]");
 const getOrders = () => JSON.parse(localStorage.getItem("orders") || "[]");
@@ -127,7 +128,7 @@ const Checkout = () => {
           <div className="co-summary-items">
             {cart.map((item) => (
               <div className="co-summary-item" key={item.id}>
-                <img src={item.image} alt={item.title} />
+                <FallbackImage src={item.image} alt={item.title} />
                 <div className="co-summary-item-info">
                   <span className="co-si-title">{item.title}</span>
                   <span className="co-si-qty">Qty: {item.quantity}</span>

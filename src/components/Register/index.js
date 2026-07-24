@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { GiLotus } from "react-icons/gi";
@@ -16,6 +16,8 @@ const SUPABASE_HEADERS = {
     Prefer: "return=representation",
 };
 
+const getUser = () => JSON.parse(localStorage.getItem("user") || "null");
+
 const Register = () => {
     const navigate = useNavigate();
 
@@ -26,6 +28,12 @@ const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+
+    // Already logged in? Skip the form entirely.
+    useEffect(() => {
+        if (getUser()) navigate("/products", { replace: true });
+        // eslint-disable-next-line
+    }, []);
 
     const handleRegister = async (event) => {
         event.preventDefault();

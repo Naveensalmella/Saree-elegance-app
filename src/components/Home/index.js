@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import HeroSlider from "../HeroSlider/HeroSlider";
+import FallbackImage from "../common/FallbackImage";
 
 /* ──────────────────────────────────────────────
    SUPABASE CONFIG
@@ -94,7 +95,7 @@ const ProductCard = ({ product }) => {
       onMouseLeave={() => setHovered(false)}
     >
       <div className="product-img-wrap">
-        <img src={image} alt={name} loading="lazy" />
+        <FallbackImage src={image} alt={name} loading="lazy" />
         <div className={`product-actions ${hovered ? "visible" : ""}`}>
           <button className="action-btn" title="Add to wishlist">♡</button>
           <button className="action-btn" title="Quick view">⤢</button>
@@ -180,7 +181,7 @@ const Home = () => {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
-  
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -206,22 +207,22 @@ const Home = () => {
     }
   };
 
- 
+
   const trending = products.slice(0, 8);
   const newArrivals = products.slice(8, 12);
 
   return (
     <main className="home">
 
-      
+
       <HeroSlider />
 
-      
+
       <div className="miniBanner1-img">
-        <img src="/miniBanner1.jpg" alt="" />
+        <FallbackImage src="/miniBanner1.jpg" alt="Festive collection banner" />
       </div>
 
-      
+
       <section className="features-bar">
         {features.map((f, i) => (
           <div className="feature-item" key={i}>
@@ -234,7 +235,7 @@ const Home = () => {
         ))}
       </section>
 
-      
+
       <section className="section categories-section">
         <div className="section-header">
           <h2>Shop by Category</h2>
@@ -243,7 +244,7 @@ const Home = () => {
         <div className="categories-grid">
           {categories.map((cat) => (
             <Link to={cat.link} className="category-card" key={cat.name}>
-              <img src={cat.image} alt={cat.name} loading="lazy" />
+              <FallbackImage src={cat.image} alt={cat.name} loading="lazy" />
               <div className="category-overlay">
                 <span className="category-name">{cat.name}</span>
                 <span className="category-desc">{cat.desc}</span>
@@ -254,7 +255,7 @@ const Home = () => {
         </div>
       </section>
 
-      
+
       <section className="section">
         <div className="section-header">
           <h2>Trending Now</h2>
@@ -270,7 +271,7 @@ const Home = () => {
         </div>
       </section>
 
-      
+
       <section className="deal-banner">
         <div className="deal-content">
           <span className="deal-tag">Limited Time Offer</span>
@@ -283,7 +284,7 @@ const Home = () => {
         </div>
       </section>
 
-      
+
       {newArrivals.length > 0 && (
         <section className="section">
           <div className="section-header">
@@ -298,15 +299,14 @@ const Home = () => {
         </section>
       )}
 
-      
+
       <section className="promo-split">
-        <div
-          className="promo-card"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1604502071830-b5e8dce44f83?w=800&q=80)",
-          }}
-        >
+        <div className="promo-card">
+          <FallbackImage
+            src="https://images.unsplash.com/photo-1604502071830-b5e8dce44f83?w=800&q=80"
+            alt="Wedding season bridal collection"
+            className="promo-card-img"
+          />
           <div className="promo-overlay" />
           <div className="promo-text">
             <h3>Wedding Season</h3>
@@ -316,13 +316,12 @@ const Home = () => {
             </Link>
           </div>
         </div>
-        <div
-          className="promo-card"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&q=80)",
-          }}
-        >
+        <div className="promo-card">
+          <FallbackImage
+            src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&q=80"
+            alt="Office-ready kurtis"
+            className="promo-card-img"
+          />
           <div className="promo-overlay" />
           <div className="promo-text">
             <h3>Office-Ready Kurtis</h3>
@@ -334,7 +333,7 @@ const Home = () => {
         </div>
       </section>
 
-      
+
       <section className="section testimonials-section">
         <div className="section-header">
           <h2>What Our Customers Say</h2>
@@ -350,7 +349,7 @@ const Home = () => {
         </div>
       </section>
 
-      
+
       <section className="newsletter">
         <div className="newsletter-inner">
           <h2>Stay in the Loop</h2>
@@ -375,7 +374,7 @@ const Home = () => {
         </div>
       </section>
 
-     
+
       <section className="section insta-section">
         <div className="section-header">
           <h2>#StyledByYou</h2>
@@ -391,7 +390,7 @@ const Home = () => {
             "photo-1519389950473-47ba0277781c",
           ].map((id, i) => (
             <div className="insta-item" key={i}>
-              <img
+              <FallbackImage
                 src={`https://images.unsplash.com/${id}?w=400&q=80`}
                 alt="Community style"
                 loading="lazy"

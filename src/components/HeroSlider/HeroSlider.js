@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./HeroSlider.css";
+import FallbackImage from "../common/FallbackImage";
 
 const slides = [
     {
@@ -64,10 +65,13 @@ const HeroSlider = () => {
     const slide = slides[current];
 
     return (
-        <section
-            className="hero-slider"
-            style={{ backgroundImage: `url(${slide.image})` }}
-        >
+        <section className="hero-slider">
+            <FallbackImage
+                key={current}
+                src={slide.image}
+                alt={slide.title}
+                className="hero-slider-img"
+            />
             <div className="hero-slider-overlay" />
             <div className={`hero-slider-content hero-slider-${slide.align}`} key={current}>
                 <span className="hero-slider-subtitle">{slide.subtitle}</span>

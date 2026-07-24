@@ -10,6 +10,8 @@ import Orders from "./components/Orders";
 import Footer from "./components/Footer";
 import SingleProduct from "./components/SingleProduct";
 import Checkout from "./components/Checkout";
+import Profile from "./components/Profile";
+import ProtectedRouter from "./components/ProtectedRouter";
 
 const App = () => {
   return (
@@ -17,13 +19,14 @@ const App = () => {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<SingleProduct />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/" element={<ProtectedRouter><Home /></ProtectedRouter>} />
+        <Route path="/products" element={<ProtectedRouter><Products /></ProtectedRouter>} />
+        <Route path="/products/:id" element={<ProtectedRouter><SingleProduct /></ProtectedRouter>} />
+        <Route path="/cart" element={<ProtectedRouter><Cart /></ProtectedRouter>} />
+        <Route path="/wishlist" element={<ProtectedRouter><Wishlist /></ProtectedRouter>} />
+        <Route path="/orders" element={<ProtectedRouter><Orders /></ProtectedRouter>} />
+        <Route path="/checkout" element={<ProtectedRouter><Checkout /></ProtectedRouter>} />
+        <Route path="/profile" element={<ProtectedRouter><Profile /></ProtectedRouter>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
       </Routes>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Orders.css";
 import { BsBoxSeam, BsChevronDown, BsChevronUp, BsCheckCircleFill } from "react-icons/bs";
+import FallbackImage from "../common/FallbackImage";
 
 const getOrders = () => JSON.parse(localStorage.getItem("orders") || "[]");
 
@@ -72,14 +73,14 @@ const Orders = () => {
                                 </div>
                             </div>
 
-                            
+
                             {isExpanded && (
                                 <div className="order-details">
                                     <div className="order-items-section">
                                         <h4>Items ({order.items.length})</h4>
                                         {order.items.map((item) => (
                                             <div className="order-item" key={item.id}>
-                                                <img src={item.image} alt={item.title} />
+                                                <FallbackImage src={item.image} alt={item.title} />
                                                 <div className="order-item-info">
                                                     <Link to={`/products/${item.id}`} className="order-item-title">{item.title}</Link>
                                                     <span className="order-item-qty">Qty: {item.quantity}</span>

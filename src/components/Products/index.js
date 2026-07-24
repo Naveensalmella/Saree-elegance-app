@@ -6,6 +6,7 @@ import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { BsCartPlus, BsCheckCircleFill } from "react-icons/bs";
 import { IoFilterSharp } from "react-icons/io5";
 import { HiOutlineSearch } from "react-icons/hi";
+import FallbackImage from "../common/FallbackImage";
 
 
 const SUPABASE_URL =
@@ -166,7 +167,7 @@ const Products = () => {
   else if (stockFilter === "outofstock")
     filtered = filtered.filter((p) => p.stock === 0);
 
- 
+
   if (sortBy === "low") filtered.sort((a, b) => a.price - b.price);
   else if (sortBy === "high") filtered.sort((a, b) => b.price - a.price);
   else if (sortBy === "name")
@@ -174,13 +175,13 @@ const Products = () => {
 
   return (
     <div className="products-page">
-      
+
       <div className="products-hero">
         <h1>Our Collection</h1>
         <p>Handpicked ethnic wear for every occasion</p>
       </div>
 
-      
+
       <div className="products-toolbar">
         <div className="toolbar-left">
           <div className="toolbar-search">
@@ -216,7 +217,7 @@ const Products = () => {
         </div>
       </div>
 
-     
+
       {showFilters && (
         <div className="filters-bar">
           <div className="filter-group">
@@ -257,10 +258,10 @@ const Products = () => {
         </div>
       )}
 
-     
+
       {error && <p className="products-error">{error}</p>}
 
-      
+
       <div className="products-grid-page">
         {loading
           ? Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)
@@ -281,10 +282,10 @@ const Products = () => {
 
               return (
                 <div className="p-card" key={item.id}>
-                 
+
                   <div className="p-card-img-wrap">
                     <Link to={`/products/${item.id}`}>
-                      <img
+                      <FallbackImage
                         src={item.image}
                         alt={item.title}
                         className="p-card-img"
@@ -292,7 +293,7 @@ const Products = () => {
                       />
                     </Link>
 
-                    
+
                     {badge && (
                       <span
                         className={`p-badge p-badge-${badge
@@ -303,7 +304,7 @@ const Products = () => {
                       </span>
                     )}
 
-                   
+
                     <button
                       className={`p-wishlist-btn ${wishlisted ? "active" : ""}`}
                       onClick={() => toggleWishlist(item)}
@@ -316,7 +317,7 @@ const Products = () => {
                       {wishlisted ? <FaHeart /> : <FaRegHeart />}
                     </button>
 
-                   
+
                     {item.stock === 0 && (
                       <div className="p-outofstock-overlay">
                         <span>Out of Stock</span>
@@ -324,7 +325,7 @@ const Products = () => {
                     )}
                   </div>
 
-                 
+
                   <div className="p-card-body">
                     <Link
                       to={`/products/${item.id}`}

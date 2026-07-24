@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Cart.css";
 import { BsTrash3, BsCartX, BsBag } from "react-icons/bs";
 import { HiPlus, HiMinus } from "react-icons/hi";
+import FallbackImage from "../common/FallbackImage";
 
 const getCart = () => JSON.parse(localStorage.getItem("cart") || "[]");
 const saveCart = (list) => localStorage.setItem("cart", JSON.stringify(list));
@@ -57,12 +58,12 @@ const Cart = () => {
             </div>
 
             <div className="cart-layout">
-                
+
                 <div className="cart-items">
                     {cartItems.map((item) => (
                         <div className="cart-item" key={item.id}>
                             <Link to={`/products/${item.id}`} className="cart-item-img-wrap">
-                                <img src={item.image} alt={item.title} />
+                                <FallbackImage src={item.image} alt={item.title} />
                             </Link>
                             <div className="cart-item-details">
                                 <Link to={`/products/${item.id}`} className="cart-item-title">
@@ -88,7 +89,7 @@ const Cart = () => {
                     <button className="cart-clear-btn" onClick={clearCart}>Clear Cart</button>
                 </div>
 
-                
+
                 <div className="cart-summary">
                     <h3>Order Summary</h3>
                     <div className="cart-summary-row">
